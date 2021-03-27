@@ -13,3 +13,7 @@
 	opacity: 0.6;
 	cursor: pointer;
 }
+
+.profile__edit:focus {
+	outline: 0;
+}

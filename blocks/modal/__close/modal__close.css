@@ -1,0 +1,28 @@
+.modal__close {
+	background: .0;
+  position: absolute;
+	top: -40px;
+	right: -40px;
+	min-width: 40px;
+	min-height: 40px;
+	border: none;
+	cursor: pointer;
+	background: url(../../../images/closeIcon.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.modal__close:hover {
+	opacity: 0.6;
+	cursor: pointer;
+}
+
+.modal__close:focus {
+	outline: 0;
+}
+@media screen and (max-width:768px) {
+	.modal__close {
+			top: -53px;
+			right: 0;
+			margin-bottom: 14px;
+	}
+}

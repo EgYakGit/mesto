@@ -1,0 +1,33 @@
+.modal__save {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 22px;
+	text-align: center;	
+	margin-top: 45px;
+	background: .0;
+	border: none;
+	border-radius: 2px;
+	min-width: 358px;
+	min-height: 50px;
+	background-color: #111111;
+	color: #ffffff;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: 0.2s;
+}
+
+.modal__save:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.modal__save:focus {
+	outline: 0;
+}
+@media screen and (max-width:768px) {
+	.modal__save {
+			min-width: 238px; 
+	}
+}

@@ -21,3 +21,10 @@
 @import url(../blocks/cards/__item-like/cards__item-like.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);
+@import url(../blocks/modal/modal.css);
+@import url(../blocks/modal/__dialog/modal__dialog.css);
+@import url(../blocks/modal/__close/modal__close.css);
+@import url(../blocks/modal/__title/modal__title.css);
+@import url(../blocks/modal/__form/modal__form.css);
+@import url(../blocks/modal/__input/modal__input.css);
+@import url(../blocks/modal/__save/modal__save.css);

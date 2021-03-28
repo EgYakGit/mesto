@@ -17,3 +17,9 @@
 .profile__edit:focus {
 	outline: 0;
 }
+@media screen and (max-width:768px) {
+	.profile__edit {
+		min-width: 18px;
+		min-height: 18px;
+	}
+}

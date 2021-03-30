@@ -1,5 +1,5 @@
-.modal__save {
-  font-family: 'Inter';
+.form__save {
+  font-family: 'Intrer', 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -18,16 +18,16 @@
   transition: 0.2s;
 }
 
-.modal__save:hover {
+.form__save:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
-.modal__save:focus {
+.form__save:focus {
   outline: 0;
 }
 @media screen and (max-width:768px) {
-  .modal__save {
-      min-width: 238px; 
+  .form__save {
+    min-width: 238px; 
   }
 }

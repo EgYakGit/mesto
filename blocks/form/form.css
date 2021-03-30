@@ -1,7 +1,7 @@
-.modal__form {
+.form {
   display: flex;
-	flex-direction: column;
-  font-family: 'Intrer';
+  flex-direction: column;
+  font-family: 'Intrer', 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

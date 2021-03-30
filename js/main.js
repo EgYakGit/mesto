@@ -3,19 +3,10 @@ let editBtn = profile.querySelector('.profile__edit');
 let profileName = profile.querySelector('.profile__name');
 let profileAbout = profile.querySelector('.profile__about');
 let modal = document.querySelector('.modal');
-let modalForm = modal.querySelector('.modal__form');
-let modalCloseBtn = modal.querySelector('.modal__close');
-let nameInput = modalForm.querySelector('.modal__input_name');
-let aboutInput = modalForm.querySelector('.modal__input_about');
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
-  
-  closeModal();
-}
+let form = modal.querySelector('.form');
+let modalCloseBtn = modal.querySelector('.modal__close'); 
+let nameInput = form.querySelector('.form__input_edit_name');
+let aboutInput = form.querySelector('.form__input_edit_about');
 
 function openModal() {
   nameInput.value = profileName.textContent;
@@ -27,6 +18,15 @@ function closeModal() {
   modal.classList.remove('modal_opened');
 }
 
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
+  
+  closeModal();
+}
+
 editBtn.addEventListener('click', openModal);
 modalCloseBtn.addEventListener('click', closeModal);
-modalForm.addEventListener('submit', formSubmitHandler);
+form.addEventListener('submit', formSubmitHandler);
+//modalForm --> form

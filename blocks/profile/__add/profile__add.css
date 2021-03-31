@@ -20,6 +20,7 @@
 }
 @media screen and (max-width:768px) {
   .profile__add {
+    background-image: url(../../../images/addButtonSmoll.svg);
     margin: auto;
     width: 100%;
     margin-top: 36px;

@@ -7,7 +7,7 @@
 }
 @media screen and (max-width:768px) {
   .modal__dialog {
-      max-width: calc(282px - (22px * 2));
-      padding: 25px 22px;
+    max-width: calc(282px - (22px * 2));
+    padding: 25px 22px;
   }
 }

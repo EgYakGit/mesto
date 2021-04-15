@@ -1,36 +1,3 @@
-// let profile = document.querySelector('.profile');
-// let editBtn = profile.querySelector('.profile__edit');
-// let profileName = profile.querySelector('.profile__name');
-// let profileAbout = profile.querySelector('.profile__about');
-// let modal = document.querySelector('.modal');
-// let form = modal.querySelector('.form');
-// let modalCloseBtn = modal.querySelector('.modal__close'); 
-// let nameInput = form.querySelector('.form__input_edit_name');
-// let aboutInput = form.querySelector('.form__input_edit_about');
-
-// function openModal() {
-//   nameInput.value = profileName.textContent;
-//   aboutInput.value = profileAbout.textContent;
-//   modal.classList.add('modal_opened');
-// }
-
-// function closeModal() {
-//   modal.classList.remove('modal_opened');
-// }
-
-// function formSubmitHandler(evt) {
-//   evt.preventDefault();
-//   profileName.textContent = nameInput.value;
-//   profileAbout.textContent = aboutInput.value;
-  
-//   closeModal();
-// }
-
-// editBtn.addEventListener('click', openModal);
-// modalCloseBtn.addEventListener('click', closeModal);
-// form.addEventListener('submit', formSubmitHandler);
-
-
 //модалки ниже
 const editModal = document.querySelector('.modal_profile_edit');
 const addModal = document.querySelector('.modal_profile_add');
@@ -79,3 +46,89 @@ editBtn.addEventListener("click", () =>
   openModal(editModal));
 editCloseBtn.addEventListener("click", () => 
   closeModal(editModal));
+
+function openEditModal(profile) {
+  //заполнение формы
+  nameInput.value = profileName.textContent;
+  aboutInput.value = profileAbout.textContent;
+  openModal(profile);
+}
+
+//Обработчик формы модалки редактирования
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
+  closeModal(editModal);
+}
+// навешиваем слушатель 
+profileForm.addEventListener("submit", formSubmitHandler);
+
+// навешиваем слушатель событий на кнопки addBtn & addCloseBtn
+addBtn.addEventListener("click", () => openModal(addModal));
+addCloseBtn.addEventListener("click", () => closeModal(addModal));
+
+//функция создания карточки
+function createCard(obj, templateElement) {
+  //функция открытия модалки с 'проброшенными' значениями из полей формы
+  function imageClickHandler() {
+    imgBtn.src = obj.link;
+    imgBtn.alt = obj.name;
+    imgModalDiscription.textContent = obj.name;
+    openModal(imgModal);
+  }
+
+  //клонируем темплейт
+  const cardElement = templateElement.cloneNode(true);
+  //ищем элементы темплейта
+  const cardElementTitle = cardElement.querySelector(".card__item-title");
+  const cardImage = cardElement.querySelector(".card__image");
+
+  //навешиваем обработчик открытия модалки
+  cardImage.addEventListener("click", imageClickHandler);
+
+  //присваиваем значения строк из массива
+  cardElementTitle.textContent = obj.name;
+  cardImage.src = obj.link;
+  cardImage.alt = obj.name;
+
+  //навешиваем обработчики на кнопку удаления карточки
+  const deleteBtn = cardElement.querySelector(".card__item-delete");
+  deleteBtn.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  //навешиваем обработчики на кнопку лайка карточки
+  const likeBtn = cardElement.querySelector(".card__item-like");
+  likeBtn.addEventListener("click", (event) => {
+    event.target.classList.toggle("card__item-like-active");
+  });
+
+  return cardElement;
+}
+
+//проходим по массиву, добавляем элементы в контейнер
+initialCards.forEach((item) => {
+  const cardElement = createCard(item, templateElement);
+  container.prepend(cardElement);
+});
+
+//функция добавления карточки
+const cardSubmitHandler = (evt) => {
+  evt.preventDefault();
+
+  const obj = {
+    link: cardModalInputLink.value,
+    name: cardModalInputName.value,
+  };
+
+  const cardElement = createCard(obj, templateElement);
+  container.prepend(cardElement);
+  closeModal(addModal);
+
+  cardModalInputLink.value = "";
+  cardModalInputName.value = "";
+};
+
+addModal.addEventListener("submit", cardSubmitHandler);
+imgCloseBtn.addEventListener("click", () => closeModal(imgModal));

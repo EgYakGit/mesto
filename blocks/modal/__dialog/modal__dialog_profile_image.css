@@ -1,8 +1,7 @@
 .modal__dialog_profile_image {
-  position: relative;
   max-width: 75vw;
   max-height: 75vh;
-  background-color: transparent ;
+  background-color: transparent;
   padding: 0;
   border-radius: none;
 }

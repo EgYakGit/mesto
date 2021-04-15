@@ -70,7 +70,7 @@ addCloseBtn.addEventListener("click", () => closeModal(addModal));
 
 //функция создания карточки
 function createCard(obj, templateElement) {
-  //функция открытия модалки с 'проброшенными' значениями из полей формы
+  //функция открытия модалки со значениями из полей формы
   function imageClickHandler() {
     imgBtn.src = obj.link;
     imgBtn.alt = obj.name;

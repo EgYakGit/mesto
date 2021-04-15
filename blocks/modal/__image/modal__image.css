@@ -1,0 +1,9 @@
+.modal__image {
+	max-width: 75vw;
+	max-height: 75vh;
+}
+@media screen and (max-width:768px) {
+  .modal__image {
+    max-width: calc(75vw + (20px * 2));
+  }
+}

@@ -24,6 +24,10 @@
 @import url(../blocks/footer/__author/footer__author.css);
 @import url(../blocks/modal/modal.css);
 @import url(../blocks/modal/__dialog/modal__dialog.css);
+@import url(../blocks/modal/modal_profile_image.css);
+@import url(../blocks/modal/__dialog/modal__dialog_profile_image.css);
+@import url(../blocks/modal/__image/modal__image.css);
+@import url(../blocks/modal/__discription/modal__discription.css);
 @import url(../blocks/modal/__close/modal__close.css);
 @import url(../blocks/modal/__title/modal__title.css);
 @import url(../blocks/form/form.css);

@@ -105,7 +105,7 @@ function createCard(obj, templateElement) {
   });
 
   return cardElement;
-}
+};
 
 //проходим по массиву, добавляем элементы в контейнер
 initialCards.forEach((item) => {

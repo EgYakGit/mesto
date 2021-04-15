@@ -1,3 +1,14 @@
 .modal__dialog_profile_image {
   position: relative;
+  max-width: 75vw;
+  max-height: 75vh;
+  background-color: transparent ;
+  padding: 0;
+  border-radius: none;
+}
+@media screen and (max-width:768px) {
+  .modal__dialog_profile_image {
+    padding: 0;
+    max-width: calc(75vw + (20px * 2));
+  }
 }

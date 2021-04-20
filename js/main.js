@@ -34,12 +34,35 @@ const templateElement = document.querySelector("#template").content.querySelecto
 //функция открытия модалки
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  // добавление слушателя кнопки Esc
+  document.addEventListener("keydown", keyHandler);
 }
 
 // функция закрытия модалки
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  // отмена добавленного слушателя
+  document.removeEventListener("keydown", keyHandler);
 }
+
+////////////////////////////////////////////////
+//функция закрытия модалки при нажатии Esc
+function keyHandler(evt) {
+  if (evt.key === 'Escape') {
+    const openedModal = document.querySelector('.modal_opened');
+      closeModal(openedModal);
+  }
+}
+
+//функция закрытия модалки при клике на оверлей
+document.addEventListener("click", overlayHandler);
+
+function overlayHandler(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
+}
+////////////////////////////////////////////////
 
 // навешиваем слушатель событий на кнопки editBtn & editCloseBtn
 editBtn.addEventListener("click", () =>

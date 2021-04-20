@@ -21,31 +21,30 @@ const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
 //форма для карточек в ДОМе
-const cardModalInputName = addModal.querySelector(".form__input_add_name");
-const cardModalInputLink = addModal.querySelector(".form__input_add_link");
-const cardModalBtn = document.querySelector(".form__save");
-const container = document.querySelector(".card");
-const cardModalForm = document.querySelector(".form_card");
+const cardModalInputName = addModal.querySelector('.form__input_add_name');
+const cardModalInputLink = addModal.querySelector('.form__input_add_link');
+const cardModalBtn = document.querySelector('.form__save');
+const container = document.querySelector('.card');
+const cardModalForm = document.querySelector('.form_card');
 
 // модалка изображений
-const imgModalDiscription = imgModal.querySelector(".modal__discription");
-const templateElement = document.querySelector("#template").content.querySelector(".card__item");
+const imgModalDiscription = imgModal.querySelector('.modal__discription');
+const templateElement = document.querySelector('#template').content.querySelector('.card__item');
 
 //функция открытия модалки
 function openModal(modal) {
-  modal.classList.add("modal_opened");
+  modal.classList.add('modal_opened');
   // добавление слушателя кнопки Esc
-  document.addEventListener("keydown", keyHandler);
+  document.addEventListener('keydown', keyHandler);
 }
 
 // функция закрытия модалки
 function closeModal(modal) {
-  modal.classList.remove("modal_opened");
+  modal.classList.remove('modal_opened');
   // отмена добавленного слушателя
-  document.removeEventListener("keydown", keyHandler);
+  document.removeEventListener('keydown', keyHandler);
 }
 
-////////////////////////////////////////////////
 //функция закрытия модалки при нажатии Esc
 function keyHandler(evt) {
   if (evt.key === 'Escape') {
@@ -55,26 +54,39 @@ function keyHandler(evt) {
 }
 
 //функция закрытия модалки при клике на оверлей
-document.addEventListener("click", overlayHandler);
+document.addEventListener('click', overlayHandler);
 
 function overlayHandler(evt) {
-  if (evt.target.classList.contains("modal")) {
+  if (evt.target.classList.contains('modal')) {
     closeModal(evt.target);
   }
 }
-////////////////////////////////////////////////
 
 // навешиваем слушатель событий на кнопки editBtn & editCloseBtn
-editBtn.addEventListener("click", () =>
-  openModal(editModal));
-editCloseBtn.addEventListener("click", () => 
-  closeModal(editModal));
+editBtn.addEventListener('click', () => {
+	const inputElements = Array.from(profileForm.querySelectorAll('.form__input'));
+  const buttonElement = profileForm.querySelector('.form__save');
+
+	openModal(editModal);
+  
+	inputElements.forEach((input) => {
+    hideInputError(profileForm, input, 'modal__input-error_active');  
+  });
+  toggleButtonState(inputElements, buttonElement, 'form__save_disabled');
+}
+);
+
+editCloseBtn.addEventListener('click', () => closeModal(editModal));
 
 function openEditModal(profile) {
+	const inputList = cardModalForm.querySelectorAll('.form__input');
+  const buttonElement = cardModalForm.querySelector('.form__save');
   //заполнение формы
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
-  openModal(profile);
+  
+	openModal(profile);
+	toggleButtonState(inputList, buttonElement, 'form__save_disabled');
 }
 
 //Обработчик формы модалки редактирования
@@ -85,11 +97,24 @@ function formSubmitHandler(evt) {
   closeModal(editModal);
 }
 // навешиваем слушатель 
-profileForm.addEventListener("submit", formSubmitHandler);
+profileForm.addEventListener('submit', formSubmitHandler);
 
 // навешиваем слушатель событий на кнопки addBtn & addCloseBtn
-addBtn.addEventListener("click", () => openModal(addModal));
-addCloseBtn.addEventListener("click", () => closeModal(addModal));
+addBtn.addEventListener('click', () => {
+	const inputElements = Array.from(cardModalForm.querySelectorAll('.form__input'));
+  const buttonElement = cardModalForm.querySelector('.form__save');
+
+	openModal(addModal);
+
+	inputElements.forEach((input) => {
+    input.value = '';
+    hideInputError(cardModalForm, input, 'modal__input-error_active');    
+  });
+
+  toggleButtonState(inputElements, buttonElement, 'form__save_disabled');
+});
+
+addCloseBtn.addEventListener('click', () => closeModal(addModal));
 
 //функция создания карточки
 function createCard(obj, templateElement) {
@@ -104,11 +129,11 @@ function createCard(obj, templateElement) {
   //клонируем темплейт
   const cardElement = templateElement.cloneNode(true);
   //ищем элементы темплейта
-  const cardElementTitle = cardElement.querySelector(".card__item-title");
-  const cardImage = cardElement.querySelector(".card__image");
+  const cardElementTitle = cardElement.querySelector('.card__item-title');
+  const cardImage = cardElement.querySelector('.card__image');
 
   //навешиваем обработчик открытия модалки
-  cardImage.addEventListener("click", imageClickHandler);
+  cardImage.addEventListener('click', imageClickHandler);
 
   //присваиваем значения строк из массива
   cardElementTitle.textContent = obj.name;
@@ -116,15 +141,15 @@ function createCard(obj, templateElement) {
   cardImage.alt = obj.name;
 
   //навешиваем обработчики на кнопку удаления карточки
-  const deleteBtn = cardElement.querySelector(".card__item-delete");
-  deleteBtn.addEventListener("click", () => {
+  const deleteBtn = cardElement.querySelector('.card__item-delete');
+  deleteBtn.addEventListener('click', () => {
     cardElement.remove();
   });
 
   //навешиваем обработчики на кнопку лайка карточки
-  const likeBtn = cardElement.querySelector(".card__item-like");
-  likeBtn.addEventListener("click", (event) => {
-    event.target.classList.toggle("card__item-like-active");
+  const likeBtn = cardElement.querySelector('.card__item-like');
+  likeBtn.addEventListener('click', (event) => {
+    event.target.classList.toggle('card__item-like-active');
   });
 
   return cardElement;
@@ -149,9 +174,9 @@ const cardSubmitHandler = (evt) => {
   container.prepend(cardElement);
   closeModal(addModal);
 
-  cardModalInputLink.value = "";
-  cardModalInputName.value = "";
+  cardModalInputLink.value = '';
+  cardModalInputName.value = '';
 };
 
-addModal.addEventListener("submit", cardSubmitHandler);
-imgCloseBtn.addEventListener("click", () => closeModal(imgModal));
+addModal.addEventListener('submit', cardSubmitHandler);
+imgCloseBtn.addEventListener('click', () => closeModal(imgModal));

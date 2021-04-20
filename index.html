@@ -48,9 +48,11 @@
     <div class="modal__dialog">
       <button class="modal__close" type="button"></button>
       <h3 class="modal__title">Редактировать профиль</h3>
-      <form name="profileInfo" class="form">
-        <input type="text" name="name" class="form__input form__input_edit_name" placeholder="Жак-Ив Кусто">
-        <input type="text" name="about" class="form__input form__input_edit_about" placeholder="Исследователь океана">
+      <form name="profileInfo" class="form" novalidate>
+        <input type="text" name="name" class="form__input form__input_edit_name" id="input_edit_name" placeholder="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+        <span class="modal__input-error" id="input_edit_name-error">Вы пропустили это поле.</span>
+        <input type="text" name="about" class="form__input form__input_edit_about" id="input_edit_about" placeholder="Исследователь океана" minlength="2" maxlength="200" required>
+        <span class="modal__input-error" id="input_edit_about-error">Вы пропустили это поле.</span>
         <button class="form__save" type="submit">Сохранить</button>
       </form>
     </div>
@@ -60,9 +62,11 @@
     <div class="modal__dialog">
       <button class="modal__close" type="button"></button>
       <h3 class="modal__title">Новое место</h3>
-      <form name="profileInfo" class="form form_card">
-        <input type="text" name="name" class="form__input form__input_add_name" placeholder="Название">
-        <input type="url" name="link" class="form__input form__input_add_link" placeholder="Ссылка на картинку">
+      <form name="profileCard" class="form form_card" novalidate>
+        <input type="text" name="name" class="form__input form__input_add_name" id="input_add_name" placeholder="Название" minlength="2" maxlength="30" required>
+        <span class="modal__input-error" id="input_add_name-error">Вы пропустили это поле.</span>
+        <input type="url" name="link" class="form__input form__input_add_link" id="input_add_link" placeholder="Ссылка на картинку" required>
+        <span class="modal__input-error" id="input_add_link-error">Введите адрес сайта.</span>
         <button class="form__save" type="submit">Сохранить</button>
       </form>
     </div>
@@ -77,5 +81,6 @@
   </div>
 <script src="js/cards.js"></script>
 <script src="js/main.js"></script>
+<script src="js/valid.js"></script>
 </body>
 </html>

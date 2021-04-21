@@ -90,14 +90,14 @@ function openEditModal(profile) {
 }
 
 //Обработчик формы модалки редактирования
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
   closeModal(editModal);
 }
 // навешиваем слушатель 
-profileForm.addEventListener('submit', formSubmitHandler);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 // навешиваем слушатель событий на кнопки addBtn & addCloseBtn
 addBtn.addEventListener('click', () => {
@@ -149,7 +149,7 @@ function createCard(obj, templateElement) {
   //навешиваем обработчики на кнопку лайка карточки
   const likeBtn = cardElement.querySelector('.card__item-like');
   likeBtn.addEventListener('click', (event) => {
-    event.target.classList.toggle('card__item-like-active');
+    event.target.classList.toggle('card__item-like_active');
   });
 
   return cardElement;
@@ -162,7 +162,7 @@ initialCards.forEach((item) => {
 });
 
 //функция добавления карточки
-const cardSubmitHandler = (evt) => {
+const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
 
   const obj = {
@@ -178,5 +178,5 @@ const cardSubmitHandler = (evt) => {
   cardModalInputName.value = '';
 };
 
-addModal.addEventListener('submit', cardSubmitHandler);
+addModal.addEventListener('submit', handleCardFormSubmit);
 imgCloseBtn.addEventListener('click', () => closeModal(imgModal));

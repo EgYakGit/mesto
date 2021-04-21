@@ -1,0 +1,4 @@
+.modal_opened {
+  visibility: inherit;
+  opacity: 1;
+}

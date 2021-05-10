@@ -1,3 +1,5 @@
+import initialCards from "./initial-cards.js";
+
 //модалки ниже
 const editModal = document.querySelector('.modal_profile_edit');
 const addModal = document.querySelector('.modal_profile_add');

@@ -52,8 +52,8 @@ function keyHandler(evt) {
   }
 }
 
-//функция закрытия модалки при клике на оверлей
-document.addEventListener('click', overlayHandler);
+//функция закрытия модалки при клике на оверлей переписана и перенесена в конец файла index.js
+// document.addEventListener('click', overlayHandler);
 
 function overlayHandler(evt) {
   if (evt.target.classList.contains('modal')) {
@@ -61,12 +61,15 @@ function overlayHandler(evt) {
   }
 }
 
+
+
 // навешиваем слушатель событий на кнопки editBtn & editCloseBtn
 editBtn.addEventListener('click', () => {
   formEditCardValidator.reset();
-	openModal(editModal);
-  nameInput.value = '';
-  aboutInput.value = ''; 
+	// openModal(editModal);
+  // nameInput.value = '';
+  // aboutInput.value = ''; 
+  openEditModal(editModal);
 });  
 
 editCloseBtn.addEventListener('click', () => closeModal(editModal));
@@ -91,11 +94,13 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 // навешиваем слушатель событий на кнопки addBtn & addCloseBtn
 addBtn.addEventListener('click', () => {
 
-  formAddCardValidator.reset();
+  // formAddCardValidator.reset();
 	openModal(addModal);
 	
-	cardModalInputName.value = '';
-  cardModalInputLink.value = ''; 
+	cardModalForm.reset();
+  formAddCardValidator.reset();
+  // cardModalInputName.value = '';
+  // cardModalInputLink.value = ''; 
 });
 	
 addCloseBtn.addEventListener('click', () => closeModal(addModal));
@@ -139,9 +144,15 @@ const handleCardFormSubmit = (evt) => {
   container.prepend(addElements);
   closeModal(addModal);
 
-  cardModalInputLink.value = '';
-  cardModalInputName.value = '';
+  // cardModalInputLink.value = '';
+  // cardModalInputName.value = '';
+  cardModalForm.reset();
 };
 
 addModal.addEventListener('submit', handleCardFormSubmit);
 imgCloseBtn.addEventListener('click', () => closeModal(imgModal));
+
+// Закрытие модалок по клику оверлея
+editModal.addEventListener("click", overlayHandler); 
+addModal.addEventListener("click", overlayHandler); 
+imgModal.addEventListener("click", overlayHandler); 

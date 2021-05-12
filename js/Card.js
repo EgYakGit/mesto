@@ -18,7 +18,6 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-
     this._element.querySelector(".card__image").src = this.link;
     this._element.querySelector(".card__image").alt = this.name;
     this._element.querySelector(".card__item-title").textContent = this.name;
@@ -35,7 +34,6 @@ export default class Card {
     });
     this._element.querySelector('.card__image').addEventListener('click', () => this._imageClickHandler(this));
   }
-
 
   _likeBtn() {
     this._element

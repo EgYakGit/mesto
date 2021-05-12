@@ -67,7 +67,6 @@ editBtn.addEventListener('click', () => {
 	openModal(editModal);
   nameInput.value = '';
   aboutInput.value = ''; 
-
 });  
 
 editCloseBtn.addEventListener('click', () => closeModal(editModal));
@@ -101,7 +100,6 @@ addBtn.addEventListener('click', () => {
 	
 addCloseBtn.addEventListener('click', () => closeModal(addModal));
 
-
 //функция открытия модалки со значениями из полей формы
 function imageClickHandler(obj) {
 	imgBtn.src = obj.link;
@@ -109,7 +107,6 @@ function imageClickHandler(obj) {
 	imgModalDiscription.textContent = obj.name;
 	openModal(imgModal);
 }
-
 
 function createCard(obj, cardSelector, imageClickHandler) {
 	const card = new Card(obj, cardSelector, imageClickHandler);
@@ -127,7 +124,6 @@ function renderList() {
 }
 
 renderList();
-
 
 //функция добавления карточки
 const handleCardFormSubmit = (evt) => {

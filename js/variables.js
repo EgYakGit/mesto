@@ -38,28 +38,3 @@ export const validationConfig = {
   inactiveButtonClass: 'form__save_disabled',
   inputErrorClass: 'modal__input-error_active'
 };
-
-//  import {
-//   editModal, 
-//   addModal, 
-//   imgModal, 
-//   editBtn, 
-//   addBtn, 
-//   imgBtn, 
-//   editCloseBtn, 
-//   addCloseBtn, 
-//   imgCloseBtn, 
-//   profileForm, 
-//   nameInput, 
-//   aboutInput, 
-//   profileName, 
-//   profileAbout, 
-//   cardModalInputName, 
-//   cardModalInputLink, 
-//   cardModalBtn, 
-//   container, 
-//   cardModalForm, 
-//   imgModalDiscription, 
-//   templateElement, 
-//   enableValidation
-// } from './variables.js';

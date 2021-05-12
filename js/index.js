@@ -17,12 +17,10 @@ import FormValidation from "./FormValidator.js";
   profileName, 
   profileAbout, 
   cardModalInputName, 
-  cardModalInputLink, 
-  cardModalBtn, 
+  cardModalInputLink,
   container, 
   cardModalForm, 
   imgModalDiscription, 
-  templateElement, 
   validationConfig
 } from './variables.js';
 
@@ -65,32 +63,20 @@ function overlayHandler(evt) {
 
 // навешиваем слушатель событий на кнопки editBtn & editCloseBtn
 editBtn.addEventListener('click', () => {
-	//const inputElements = Array.from(profileForm.querySelectorAll('.form__input'));
-  //const buttonElement = profileForm.querySelector('.form__save');
   formEditCardValidator.reset();
 	openModal(editModal);
   nameInput.value = '';
   aboutInput.value = ''; 
 
 });  
-// 	inputElements.forEach((input) => {
-//     hideInputError(profileForm, input, 'modal__input-error_active');  
-//   });
-//   toggleButtonState(inputElements, buttonElement, 'form__save_disabled');
-// }
-// );
 
 editCloseBtn.addEventListener('click', () => closeModal(editModal));
 
 function openEditModal(profile) {
-// 	const inputList = cardModalForm.querySelectorAll('.form__input');
-//   const buttonElement = cardModalForm.querySelector('.form__save');
 //заполнение формы
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
 	openModal(profile);
-
-	// toggleButtonState(inputList, buttonElement, 'form__save_disabled');
 }
 
 //Обработчик формы модалки редактирования
@@ -99,16 +85,13 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
   closeModal(editModal);
-  // nameInput.value = '';
-  // aboutInput.value = ''; 
 }
 // навешиваем слушатель 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 // навешиваем слушатель событий на кнопки addBtn & addCloseBtn
 addBtn.addEventListener('click', () => {
-	// const inputElements = Array.from(cardModalForm.querySelectorAll('.form__input'));
-  // const buttonElement = cardModalForm.querySelector('.form__save');
+
   formAddCardValidator.reset();
 	openModal(addModal);
 	
@@ -116,14 +99,6 @@ addBtn.addEventListener('click', () => {
   cardModalInputLink.value = ''; 
 });
 	
-// 	inputElements.forEach((input) => {
-//     input.value = '';
-//     hideInputError(cardModalForm, input, 'modal__input-error_active');    
-//   });
-
-//   toggleButtonState(inputElements, buttonElement, 'form__save_disabled');
-// });
-
 addCloseBtn.addEventListener('click', () => closeModal(addModal));
 
 
@@ -137,16 +112,13 @@ function imageClickHandler(obj) {
 
 
 function createCard(obj, cardSelector, imageClickHandler) {
-
 	const card = new Card(obj, cardSelector, imageClickHandler);
-
 	const cardElement = card.generateCard();
 
 	return cardElement;
 }
 
 function renderList() {
-
   initialCards.forEach((item) => {
     // Создадим экземпляр карточки
     const cardElement = createCard(item, '#template', imageClickHandler);
@@ -156,50 +128,6 @@ function renderList() {
 
 renderList();
 
-//функция создания карточки
-// function createCard(obj, templateElement) {
-//   //функция открытия модалки со значениями из полей формы
-//   function imageClickHandler() {
-//     imgBtn.src = obj.link;
-//     imgBtn.alt = obj.name;
-//     imgModalDiscription.textContent = obj.name;
-//     openModal(imgModal);
-//   }
-
-//   //клонируем темплейт
-//   const cardElement = templateElement.cloneNode(true);
-//   //ищем элементы темплейта
-//   const cardElementTitle = cardElement.querySelector('.card__item-title');
-//   const cardImage = cardElement.querySelector('.card__image');
-
-//   //навешиваем обработчик открытия модалки
-//   cardImage.addEventListener('click', imageClickHandler);
-
-//   //присваиваем значения строк из массива
-//   cardElementTitle.textContent = obj.name;
-//   cardImage.src = obj.link;
-//   cardImage.alt = obj.name;
-
-//   //навешиваем обработчики на кнопку удаления карточки
-//   const deleteBtn = cardElement.querySelector('.card__item-delete');
-//   deleteBtn.addEventListener('click', () => {
-//     cardElement.remove();
-//   });
-
-//   //навешиваем обработчики на кнопку лайка карточки
-//   const likeBtn = cardElement.querySelector('.card__item-like');
-//   likeBtn.addEventListener('click', (event) => {
-//     event.target.classList.toggle('card__item-like_active');
-//   });
-
-//   return cardElement;
-// };
-
-// //проходим по массиву, добавляем элементы в контейнер
-// initialCards.forEach((item) => {
-//   const cardElement = createCard(item, templateElement);
-//   container.prepend(cardElement);
-// });
 
 //функция добавления карточки
 const handleCardFormSubmit = (evt) => {
@@ -211,7 +139,7 @@ const handleCardFormSubmit = (evt) => {
   };
 
   const addElements = createCard(obj, '#template', imageClickHandler);
-  //"#template"
+ 
   container.prepend(addElements);
   closeModal(addModal);
 

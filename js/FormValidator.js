@@ -9,7 +9,6 @@ export default class FormValidation {
     this._inputList = Array.from(
       this._form.querySelectorAll(validationConfig.inputSelector)
     );
-    this._errorOutline = validationConfig.errorOutline;
   }
 
   _showInputError = (input, errorMessage) => {
@@ -17,7 +16,6 @@ export default class FormValidation {
 
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._inputErrorClass);
-    input.classList.add(this._errorOutline);
   };
 
   // Этот метод удаляет класс с ошибкой
@@ -26,7 +24,6 @@ export default class FormValidation {
 
     input.textContent = "";
     errorElement.classList.remove(this._inputErrorClass);
-    input.classList.remove(this._errorOutline);
   };
 
   // Этот метод добавляет класс с ошибкой (сообщение об ошибке)
@@ -53,7 +50,7 @@ export default class FormValidation {
     return errorHandler(input);
   }
 
-  //Этот метод переключает кнопку submit
+  //Переключение submit
   _toggleButtonState = () => {
     if (this._hasNotValidInput()) {
       this._buttonElement.toggleAttribute("disabled", true);
@@ -70,15 +67,15 @@ export default class FormValidation {
     });
   }
 
-  //Этот метод проверяет валидность поля
+  //Проверка валидности поля
   _isValid = (input) => {
     const isInputNotValid = !input.validity.valid;
 
     if (isInputNotValid) {
-      const errorMessage = this._getErrorMessage(input); //в этой переменной будет лежать текст ошибки
-      this._showInputError(input, errorMessage); //если получаем ошибку => показываем сообщение об ошибке
+      const errorMessage = this._getErrorMessage(input);
+      this._showInputError(input, errorMessage);
     } else {
-      this._hideInputError(input); //когда поле валидно => убираем сообщение об ошибке
+      this._hideInputError(input);
     }
   };
 
@@ -88,12 +85,12 @@ export default class FormValidation {
   }
 
   _setEventListeners() {
-    //вешаем события на саму форму и запрещаем отправку по умолчанию
+    //Запрещаем отправку по умолчанию
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
 
-    // Обойдём все элементы на форме
+    // Проходим по массиву и вешаем слушателя
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => this._onInput(input));
     });

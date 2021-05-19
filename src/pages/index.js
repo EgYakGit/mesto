@@ -1,6 +1,6 @@
-import Card from "./Card.js";
-import initialCards from "./initial-cards.js";
-import FormValidation from "./FormValidator.js";
+import Card from "../components/Card.js";
+import initialCards from "../utils/initial-cards.js";
+import FormValidation from "../components/FormValidator.js";
  import {
   editPopup, 
   addPopup, 
@@ -22,7 +22,7 @@ import FormValidation from "./FormValidator.js";
   cardPopupForm, 
   imgPopupDiscription, 
   validationConfig
-} from './variables.js';
+} from '../utils/variables.js';
 
 const formAddCardValidator = new FormValidation(validationConfig, cardPopupForm);
 formAddCardValidator.enableValidation();

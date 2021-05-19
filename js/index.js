@@ -2,9 +2,9 @@ import Card from "./Card.js";
 import initialCards from "./initial-cards.js";
 import FormValidation from "./FormValidator.js";
  import {
-  editModal, 
-  addModal, 
-  imgModal, 
+  editPopup, 
+  addPopup, 
+  imgPopup, 
   editBtn, 
   addBtn, 
   imgBtn, 
@@ -16,30 +16,30 @@ import FormValidation from "./FormValidator.js";
   aboutInput, 
   profileName, 
   profileAbout, 
-  cardModalInputName, 
-  cardModalInputLink,
+  cardPopupInputName, 
+  cardPopupInputLink,
   container, 
-  cardModalForm, 
-  imgModalDiscription, 
+  cardPopupForm, 
+  imgPopupDiscription, 
   validationConfig
 } from './variables.js';
 
-const formAddCardValidator = new FormValidation(validationConfig, cardModalForm);
+const formAddCardValidator = new FormValidation(validationConfig, cardPopupForm);
 formAddCardValidator.enableValidation();
 
 const formEditCardValidator = new FormValidation(validationConfig, profileForm);
 formEditCardValidator.enableValidation();
 
 //функция открытия модалки
-function openModal(modal) {
-  modal.classList.add('modal_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
   // добавление слушателя кнопки Esc
   document.addEventListener('keydown', keyHandler);
 }
 
 // функция закрытия модалки
-function closeModal(modal) {
-  modal.classList.remove('modal_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
   // отмена добавленного слушателя
   document.removeEventListener('keydown', keyHandler);
 }
@@ -47,8 +47,8 @@ function closeModal(modal) {
 //функция закрытия модалки при нажатии Esc
 function keyHandler(evt) {
   if (evt.key === 'Escape') {
-    const openedModal = document.querySelector('.modal_opened');
-      closeModal(openedModal);
+    const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup);
   }
 }
 
@@ -56,8 +56,8 @@ function keyHandler(evt) {
 // document.addEventListener('click', overlayHandler);
 
 function overlayHandler(evt) {
-  if (evt.target.classList.contains('modal')) {
-    closeModal(evt.target);
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
   }
 }
 
@@ -66,19 +66,19 @@ function overlayHandler(evt) {
 // навешиваем слушатель событий на кнопки editBtn & editCloseBtn
 editBtn.addEventListener('click', () => {
   formEditCardValidator.reset();
-	// openModal(editModal);
+	// openPopup(editPopup);
   // nameInput.value = '';
   // aboutInput.value = ''; 
-  openEditModal(editModal);
+  openEditPopup(editPopup);
 });  
 
-editCloseBtn.addEventListener('click', () => closeModal(editModal));
+editCloseBtn.addEventListener('click', () => closePopup(editPopup));
 
-function openEditModal(profile) {
+function openEditPopup(profile) {
 //заполнение формы
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
-	openModal(profile);
+	openPopup(profile);
 }
 
 //Обработчик формы модалки редактирования
@@ -86,7 +86,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
-  closeModal(editModal);
+  closePopup(editPopup);
 }
 // навешиваем слушатель 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
@@ -95,22 +95,22 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 addBtn.addEventListener('click', () => {
 
   // formAddCardValidator.reset();
-	openModal(addModal);
+	openPopup(addPopup);
 	
-	cardModalForm.reset();
+	cardPopupForm.reset();
   formAddCardValidator.reset();
-  // cardModalInputName.value = '';
-  // cardModalInputLink.value = ''; 
+  // cardPopupInputName.value = '';
+  // cardPopupInputLink.value = ''; 
 });
 	
-addCloseBtn.addEventListener('click', () => closeModal(addModal));
+addCloseBtn.addEventListener('click', () => closePopup(addPopup));
 
 //функция открытия модалки со значениями из полей формы
 function imageClickHandler(obj) {
 	imgBtn.src = obj.link;
 	imgBtn.alt = obj.name;
-	imgModalDiscription.textContent = obj.name;
-	openModal(imgModal);
+	imgPopupDiscription.textContent = obj.name;
+	openPopup(imgPopup);
 }
 
 function createCard(obj, cardSelector, imageClickHandler) {
@@ -135,24 +135,24 @@ const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
 
   const obj = {
-    link: cardModalInputLink.value,
-    name: cardModalInputName.value,
+    link: cardPopupInputLink.value,
+    name: cardPopupInputName.value,
   };
 
   const addElements = createCard(obj, '#template', imageClickHandler);
  
   container.prepend(addElements);
-  closeModal(addModal);
+  closePopup(addPopup);
 
-  // cardModalInputLink.value = '';
-  // cardModalInputName.value = '';
-  cardModalForm.reset();
+  // cardPopupInputLink.value = '';
+  // cardPopupInputName.value = '';
+  cardPopupForm.reset();
 };
 
-addModal.addEventListener('submit', handleCardFormSubmit);
-imgCloseBtn.addEventListener('click', () => closeModal(imgModal));
+addPopup.addEventListener('submit', handleCardFormSubmit);
+imgCloseBtn.addEventListener('click', () => closePopup(imgPopup));
 
 // Закрытие модалок по клику оверлея
-editModal.addEventListener("click", overlayHandler); 
-addModal.addEventListener("click", overlayHandler); 
-imgModal.addEventListener("click", overlayHandler); 
+editPopup.addEventListener("click", overlayHandler); 
+addPopup.addEventListener("click", overlayHandler); 
+imgPopup.addEventListener("click", overlayHandler); 

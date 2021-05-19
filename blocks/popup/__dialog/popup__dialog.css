@@ -1,4 +1,4 @@
-.modal__dialog {
+.popup__dialog {
   position: relative;
   max-width: 430px;
   background-color: #ffffff;
@@ -6,7 +6,7 @@
   border-radius: 10px;
 }
 @media screen and (max-width:768px) {
-  .modal__dialog {
+  .popup__dialog {
     max-width: calc(282px - (22px * 2));
     padding: 25px 22px;
   }

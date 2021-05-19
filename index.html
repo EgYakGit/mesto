@@ -44,39 +44,39 @@
     </footer>
   </div>
   <!--Ниже модалка для редактирования профиля-->
-  <div class="modal modal_profile_edit">
-    <div class="modal__dialog">
-      <button class="modal__close" type="button"></button>
-      <h3 class="modal__title">Редактировать профиль</h3>
+  <div class="popup popup_profile_edit">
+    <div class="popup__dialog">
+      <button class="popup__close" type="button"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
       <form name="profileInfo" class="form" novalidate>
         <input type="text" name="name" autocomplete="off" class="form__input form__input_edit_name" id="input_edit_name" placeholder="Жак-Ив Кусто" minlength="2" maxlength="40" required>
-        <span class="modal__input-error" id="input_edit_name-error">Вы пропустили это поле.</span>
+        <span class="popup__input-error" id="input_edit_name-error">Вы пропустили это поле.</span>
         <input type="text" name="about" autocomplete="off" class="form__input form__input_edit_about" id="input_edit_about" placeholder="Исследователь океана" minlength="2" maxlength="200" required>
-        <span class="modal__input-error" id="input_edit_about-error">Вы пропустили это поле.</span>
+        <span class="popup__input-error" id="input_edit_about-error">Вы пропустили это поле.</span>
         <button class="form__save" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
   <!--Ниже модалка для редактирования карточек-->
-  <div class="modal modal_profile_add">
-    <div class="modal__dialog">
-      <button class="modal__close" type="button"></button>
-      <h3 class="modal__title">Новое место</h3>
+  <div class="popup popup_profile_add">
+    <div class="popup__dialog">
+      <button class="popup__close" type="button"></button>
+      <h3 class="popup__title">Новое место</h3>
       <form name="profileCard" class="form form_card" novalidate>
         <input type="text" name="name" autocomplete="off" class="form__input form__input_add_name" id="input_add_name" placeholder="Название" minlength="2" maxlength="30" required>
-        <span class="modal__input-error" id="input_add_name-error">Вы пропустили это поле.</span>
+        <span class="popup__input-error" id="input_add_name-error">Вы пропустили это поле.</span>
         <input type="url" name="link" autocomplete="off" class="form__input form__input_add_link" id="input_add_link" placeholder="Ссылка на картинку" required>
-        <span class="modal__input-error" id="input_add_link-error">Введите адрес сайта.</span>
+        <span class="popup__input-error" id="input_add_link-error">Введите адрес сайта.</span>
         <button class="form__save" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
   <!--Ниже модалка с изображениями-->
-  <div class="modal modal_profile_image">
-    <div class="modal__dialog modal__dialog_profile_image">
-      <button class="modal__close" type="button"></button>
-      <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" class="modal__image" alt=" Архыз">
-      <p class="modal__discription">Архыз</p>
+  <div class="popup popup_profile_image">
+    <div class="popup__dialog popup__dialog_profile_image">
+      <button class="popup__close" type="button"></button>
+      <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" class="popup__image" alt=" Архыз">
+      <p class="popup__discription">Архыз</p>
     </div>
   </div>
 <script type="module" src="js/index.js"></script>

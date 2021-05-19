@@ -1,4 +1,4 @@
-.modal__close {
+.popup__close {
   background: .0;
   position: absolute;
   top: -40px;
@@ -11,16 +11,16 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-.modal__close:hover {
+.popup__close:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
-.modal__close:focus {
+.popup__close:focus {
   outline: 0;
 }
 @media screen and (max-width:768px) {
-  .modal__close {
+  .popup__close {
     top: -53px;
     right: 0;
     margin-bottom: 14px;

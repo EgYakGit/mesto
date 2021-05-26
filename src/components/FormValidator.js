@@ -19,7 +19,7 @@ export default class FormValidation {
 
   _hideInputError = (input) => {
     const errorElement = this._form.querySelector(`#${input.id}-error`);
-    input.textContent = "";
+    input.textContent = '';
     errorElement.classList.remove(this._inputErrorClass);
   };
 
@@ -45,10 +45,10 @@ export default class FormValidation {
 
   _toggleButtonState = () => {
     if (this._hasNotValidInput()) {
-      this._buttonElement.toggleAttribute("disabled", true);
+      this._buttonElement.toggleAttribute('disabled', true);
       this._buttonElement.classList.add(this._inactiveButtonClass);
     } else {
-      this._buttonElement.toggleAttribute("disabled", false);
+      this._buttonElement.toggleAttribute('disabled', false);
       this._buttonElement.classList.remove(this._inactiveButtonClass);
     }
   };
@@ -76,12 +76,12 @@ export default class FormValidation {
   }
 
   _setEventListeners() {
-    this._form.addEventListener("submit", (evt) => {
+    this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
 
     this._inputList.forEach((input) => {
-      input.addEventListener("input", () => this._onInput(input));
+      input.addEventListener('input', () => this._onInput(input));
     });
 
     this._inputList.forEach((input) => {

@@ -1,6 +1,6 @@
-import Card from "../components/Card.js";
-import initialCards from "../utils/initial-cards.js";
-import FormValidation from "../components/FormValidator.js";
+import Card from '../components/Card.js';
+import initialCards from '../constants/initial-cards.js';
+import FormValidation from '../components/FormValidator.js';
  import {
   editPopup, 
   addPopup, 
@@ -16,12 +16,12 @@ import FormValidation from "../components/FormValidator.js";
   cardPopupForm,  
   templateElement,
   validationConfig
-} from '../utils/variables.js';
-import Section from "../components/Section.js";
-import UserInfo from "../components/UserInfo.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-
+} from '../constants/variables.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import './index.css';
 
 const createCard = (obj) => {
   const card = new Card(obj, templateElement, {
@@ -63,7 +63,7 @@ function editFormSubmitHandler(obj) {
   editProfilePopup.close();
 }
 
-editBtn.addEventListener("click", () => {
+editBtn.addEventListener('click', () => {
   nameInput.value = userInfo.getUserInfo().name;
   aboutInput.value = userInfo.getUserInfo().about;
   editProfilePopup.open();
@@ -77,7 +77,7 @@ function addCardSubmitHandler(obj) {
   addCardPopup.close();
 }
 
-addBtn.addEventListener("click", () => {
+addBtn.addEventListener('click', () => {
   addCardPopup.open();
   formAddCardValidator.reset();
 });

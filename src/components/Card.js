@@ -1,47 +1,51 @@
 export default class Card {
-  constructor(obj, cardSelector, imageClickHandler) {
+  constructor(obj, cardTemplate, { handleCardClick }) {
     this.name = obj.name;
     this.link = obj.link;
-    this._cardSelector = cardSelector;
-    this._imageClickHandler = imageClickHandler;
+    this._cardTemplate = cardTemplate;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
-    const cardElement = document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".card__item")
-      .cloneNode(true);
-
+    const cardElement = this._cardTemplate.cloneNode(true);
     return cardElement;
   }
 
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
-    this._element.querySelector(".card__image").src = this.link;
-    this._element.querySelector(".card__image").alt = this.name;
+    this._cardImage = this._element.querySelector('.card__image');    
+    this._likeBtn = this._element.querySelector('.card__item-like');
+    this._deleteBtn =  this._element.querySelector('.card__item-delete');
+    this._cardImage.src = this.link;   
+    this._cardImage.alt = this.name;
     this._element.querySelector(".card__item-title").textContent = this.name;
-
+    this._setEventListeners();
     return this._element;
   }
 
-  _setEventListeners() {
-    this._element.querySelector(".card__item-like").addEventListener('click', (evt) => {
-      this._likeBtn(evt);
-    });
-    this._element.querySelector(".card__item-delete").addEventListener('click', (evt) => {
-      this._deleteBtn(evt);
-    });
-    this._element.querySelector('.card__image').addEventListener('click', () => this._imageClickHandler(this));
+  _likeButtonClick() {
+    this._likeBtn
+      .classList.toggle('card__item-like_active');
   }
 
-  _likeBtn() {
-    this._element
-      .querySelector(".card__item-like").
-      classList.toggle("card__item-like_active");
-  }
-
-  _deleteBtn() {
+  _deleteButtonClick() {
     this._element.remove();
+  }
+
+  _setEventListeners() {
+    this._likeBtn
+      .addEventListener("click", (evt) => {
+        this._likeButtonClick(evt);
+      });
+
+      this._deleteBtn
+      .addEventListener("click", (evt) => {
+        this._deleteButtonClick(evt);
+      });
+
+      this._cardImage
+      .addEventListener("click", () =>
+        this._handleCardClick(this._name, this._link)
+      );
   }
 }

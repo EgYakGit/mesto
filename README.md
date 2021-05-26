@@ -11,4 +11,4 @@
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=1124%3A2)
 
-* [Git](https://egyakgit.github.io/mesto)
+* [Git](https://egyakgit.github.io/mesto/src)

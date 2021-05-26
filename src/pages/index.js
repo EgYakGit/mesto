@@ -7,152 +7,84 @@ import FormValidation from "../components/FormValidator.js";
   imgPopup, 
   editBtn, 
   addBtn, 
-  imgBtn, 
-  editCloseBtn, 
-  addCloseBtn, 
-  imgCloseBtn, 
   profileForm, 
   nameInput, 
   aboutInput, 
   profileName, 
   profileAbout, 
-  cardPopupInputName, 
-  cardPopupInputLink,
   container, 
-  cardPopupForm, 
-  imgPopupDiscription, 
+  cardPopupForm,  
+  templateElement,
   validationConfig
 } from '../utils/variables.js';
-
-const formAddCardValidator = new FormValidation(validationConfig, cardPopupForm);
-formAddCardValidator.enableValidation();
-
-const formEditCardValidator = new FormValidation(validationConfig, profileForm);
-formEditCardValidator.enableValidation();
-
-//функция открытия модалки
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  // добавление слушателя кнопки Esc
-  document.addEventListener('keydown', keyHandler);
-}
-
-// функция закрытия модалки
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  // отмена добавленного слушателя
-  document.removeEventListener('keydown', keyHandler);
-}
-
-//функция закрытия модалки при нажатии Esc
-function keyHandler(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-      closePopup(openedPopup);
-  }
-}
-
-//функция закрытия модалки при клике на оверлей переписана и перенесена в конец файла index.js
-// document.addEventListener('click', overlayHandler);
-
-function overlayHandler(evt) {
-  if (evt.target.classList.contains('popup')) {
-    closePopup(evt.target);
-  }
-}
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 
-
-// навешиваем слушатель событий на кнопки editBtn & editCloseBtn
-editBtn.addEventListener('click', () => {
-  formEditCardValidator.reset();
-	// openPopup(editPopup);
-  // nameInput.value = '';
-  // aboutInput.value = ''; 
-  openEditPopup(editPopup);
-});  
-
-editCloseBtn.addEventListener('click', () => closePopup(editPopup));
-
-function openEditPopup(profile) {
-//заполнение формы
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAbout.textContent;
-	openPopup(profile);
-}
-
-//Обработчик формы модалки редактирования
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
-  closePopup(editPopup);
-}
-// навешиваем слушатель 
-profileForm.addEventListener('submit', handleProfileFormSubmit);
-
-// навешиваем слушатель событий на кнопки addBtn & addCloseBtn
-addBtn.addEventListener('click', () => {
-
-  // formAddCardValidator.reset();
-	openPopup(addPopup);
-	
-	cardPopupForm.reset();
-  formAddCardValidator.reset();
-  // cardPopupInputName.value = '';
-  // cardPopupInputLink.value = ''; 
-});
-	
-addCloseBtn.addEventListener('click', () => closePopup(addPopup));
-
-//функция открытия модалки со значениями из полей формы
-function imageClickHandler(obj) {
-	imgBtn.src = obj.link;
-	imgBtn.alt = obj.name;
-	imgPopupDiscription.textContent = obj.name;
-	openPopup(imgPopup);
-}
-
-function createCard(obj, cardSelector, imageClickHandler) {
-	const card = new Card(obj, cardSelector, imageClickHandler);
-	const cardElement = card.generateCard();
-
-	return cardElement;
-}
-
-function renderList() {
-  initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
-    const cardElement = createCard(item, '#template', imageClickHandler);
-    container.prepend(cardElement);
-  });  
-}
-
-renderList();
-
-//функция добавления карточки
-const handleCardFormSubmit = (evt) => {
-  evt.preventDefault();
-
-  const obj = {
-    link: cardPopupInputLink.value,
-    name: cardPopupInputName.value,
-  };
-
-  const addElements = createCard(obj, '#template', imageClickHandler);
- 
-  container.prepend(addElements);
-  closePopup(addPopup);
-
-  // cardPopupInputLink.value = '';
-  // cardPopupInputName.value = '';
-  cardPopupForm.reset();
+const createCard = (obj) => {
+  const card = new Card(obj, templateElement, {
+    handleCardClick() {
+      popupWithImage.open(obj);
+    },
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
 };
 
-addPopup.addEventListener('submit', handleCardFormSubmit);
-imgCloseBtn.addEventListener('click', () => closePopup(imgPopup));
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (obj) => {
+      const cardElement = createCard(obj);
+      cardsList.addItem(cardElement);
+    },
+  },
+  container
+);
 
-// Закрытие модалок по клику оверлея
-editPopup.addEventListener("click", overlayHandler); 
-addPopup.addEventListener("click", overlayHandler); 
-imgPopup.addEventListener("click", overlayHandler); 
+const userInfo = new UserInfo({
+  name: profileName,
+  about: profileAbout,
+});
+
+const popupWithImage = new PopupWithImage(imgPopup);
+const addCardPopup = new PopupWithForm(addPopup, addCardSubmitHandler);
+const editProfilePopup = new PopupWithForm(editPopup, editFormSubmitHandler);
+const formAddCardValidator = new FormValidation(validationConfig, cardPopupForm);
+
+
+const formEditCardValidator = new FormValidation(validationConfig, profileForm);
+
+
+function editFormSubmitHandler(obj) {
+  userInfo.setUserInfo(obj.name, obj.about);
+  editProfilePopup.close();
+}
+
+editBtn.addEventListener("click", () => {
+  nameInput.value = userInfo.getUserInfo().name;
+  aboutInput.value = userInfo.getUserInfo().about;
+  editProfilePopup.open();
+  formEditCardValidator.reset();
+});
+
+function addCardSubmitHandler(obj) {
+  const card = createCard(obj);
+
+  cardsList.addItem(card);
+  addCardPopup.close();
+}
+
+addBtn.addEventListener("click", () => {
+  addCardPopup.open();
+  formAddCardValidator.reset();
+});
+
+cardsList.renderItems();
+addCardPopup.setEventListeners();
+editProfilePopup.setEventListeners();
+popupWithImage.setEventListeners();
+formAddCardValidator.enableValidation();
+formEditCardValidator.enableValidation();

@@ -13,28 +13,22 @@ export default class FormValidation {
 
   _showInputError = (input, errorMessage) => {
     const errorElement = this._form.querySelector(`#${input.id}-error`);
-
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._inputErrorClass);
   };
 
-  // Этот метод удаляет класс с ошибкой
   _hideInputError = (input) => {
     const errorElement = this._form.querySelector(`#${input.id}-error`);
-
     input.textContent = "";
     errorElement.classList.remove(this._inputErrorClass);
   };
 
-  // Этот метод добавляет класс с ошибкой (сообщение об ошибке)
   _getErrorMessage(input) {
     const defaultErrorHandler = () => input.validationMessage;
-
     const linkErrorHandler = () => {
       if (input.validity.typeMismatch) {
         return 'Введите ссылку в формате: https://image.ru';
       }
-
       if (input.validity.valueMissing) {
         return 'Введите URL';
       }
@@ -46,11 +40,9 @@ export default class FormValidation {
     };
 
     const errorHandler = errorHandlers[input.name] || errorHandlers.default;
-
     return errorHandler(input);
   }
 
-  //Переключение submit
   _toggleButtonState = () => {
     if (this._hasNotValidInput()) {
       this._buttonElement.toggleAttribute("disabled", true);
@@ -67,7 +59,6 @@ export default class FormValidation {
     });
   }
 
-  //Проверка валидности поля
   _isValid = (input) => {
     const isInputNotValid = !input.validity.valid;
 
@@ -85,12 +76,10 @@ export default class FormValidation {
   }
 
   _setEventListeners() {
-    //Запрещаем отправку по умолчанию
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
 
-    // Проходим по массиву и вешаем слушателя
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => this._onInput(input));
     });

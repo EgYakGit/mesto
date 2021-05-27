@@ -29,7 +29,8 @@ export default class Card {
   }
 
   _deleteButtonClick() {
-    this._element.remove();
+    this._element.remove()
+    this._element = null;
   }
 
   _setEventListeners() {
@@ -45,7 +46,7 @@ export default class Card {
 
       this._cardImage
       .addEventListener('click', () =>
-        this._handleCardClick(this._name, this._link)
+        this._handleCardClick()
       );
   }
 }

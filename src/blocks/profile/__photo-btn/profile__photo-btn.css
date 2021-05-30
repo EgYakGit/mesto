@@ -1,0 +1,23 @@
+.profile__photo-btn {
+  margin-left: auto;
+  background: .0;
+	opacity: 0;
+  border-radius: 50%;
+	border: 0px;
+  min-width: 120px;
+  min-height: 120px;
+  background-image: url(../../../images/photoEdit.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: 0.2s;
+	position: absolute;
+}
+
+.profile__photo-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+.profile__photo-btn:focus {
+  outline: 0;
+}

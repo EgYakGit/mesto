@@ -20,8 +20,8 @@ export const imgCloseBtn = document.querySelector('.popup__close');
 //форма в ДОМе
 export const profileForm = document.querySelector('.form');
 export const avatarForm = document.querySelector('.form-avatar');
-export const nameInput = profileForm.querySelector('.form__input_edit_name');
-export const aboutInput = profileForm.querySelector('.form__input_edit_about');
+export const nameInput = document.querySelector('.form__input_edit_name');
+export const aboutInput = document.querySelector('.form__input_edit_about');
 export const profileName = '.profile__name';
 export const profileAbout = '.profile__about';
 export const profileAvatar = '.profile__photo';

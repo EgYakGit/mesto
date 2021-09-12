@@ -7,10 +7,6 @@ export default class PopupWithDeleteForm extends Popup {
     this._button = this._popupElement.querySelector('.form__save');
   }
 
-  getId() {
-    return this._id;
-  }
-  
   open(deleteCard) {
     super.open();
     this._deleteCard = deleteCard;

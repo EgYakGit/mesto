@@ -83,10 +83,6 @@ export default class FormValidation {
     this._inputList.forEach((input) => {
       input.addEventListener('input', () => this._onInput(input));
     });
-
-    this._inputList.forEach((input) => {
-      this._onInput(input);
-    });
   }
 
   reset() {

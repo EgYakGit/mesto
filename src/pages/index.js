@@ -88,8 +88,8 @@ Promise.all([api.getUserData(), api.getInitialCards()]).then(
       id: userData._id,
     });
     cardsList.renderItems(initialCards);
-  }
-);
+  }) 
+  .catch((err) => console.log(`Ошибка: ${err}`));
 
 const popupWithImage = new PopupWithImage(imgPopup);
 const addCardPopup = new PopupWithForm(addPopup, addCardSubmitHandler);
@@ -150,8 +150,8 @@ function addCardSubmitHandler(data) {
 }
 
 editBtn.addEventListener('click', () => {
-  // nameInput.value = userInfo.getUserInfo().name;
-  // aboutInput.value = userInfo.getUserInfo().about;
+  nameInput.value = userInfo.getUserInfo().name;
+  aboutInput.value = userInfo.getUserInfo().about;
   editProfilePopup.open();
   formEditCardValidator.reset();
 });

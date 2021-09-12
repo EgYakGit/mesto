@@ -21,7 +21,11 @@ export default class UserInfo {
     this._avatar.src = avatar;
     this._userID = id;
   }
-  
+
+  setUserAvatar(avatar) {
+    this._avatar.src = avatar;
+  }
+
   setUserAvatar(link) {
     this._avatar.src = link;
   }

@@ -56,7 +56,7 @@
     <div class="popup__dialog">
       <button class="popup__close" type="button"></button>
       <h3 class="popup__title">Обновить аватар</h3>
-      <form name="form-avatar" class="form form__avatar" novalidate>
+      <form name="form-avatar" class="form form-avatar" novalidate>
         <input type="url" name="avatar" autocomplete="off" class="form__input form__input_add_link" id="input_add_avatar" placeholder="Ссылка на картинку" required>
         <span class="popup__input-error" id="input_add_avatar-error">Введите адрес сайта.</span>
         <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
@@ -70,10 +70,8 @@
     <div class="popup popup_card-delete">
       <div class="popup__dialog">
         <!-- <button class="popup__close" type="button"></button> -->
-        <button class="popup__close" type="button">
-          <img src="<%=require('./images/CloseIcon.svg')%>" alt="кнопка закрытия попапа">
-        </button>
-        <form class="form form__card-delete" novalidate>
+        <button class="popup__close" type="button"></button>
+        <form class="form form-card-delete" novalidate>
           <h3 class="popup__title">Вы уваерены?</h3>
           <button class="form__save" type="submit" aria-label="Да">Да</button>
         </form>

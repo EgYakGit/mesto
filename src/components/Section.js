@@ -4,13 +4,14 @@ export default class Section {
     this._renderer = renderer;
     this._container = container;
   }
-
-  renderItems() {
-    this._renderedItems.forEach((item) => {
-      this._renderer(item);
+  // этот метод отвечает за отрисовку всех элементов
+  renderItems(items) {
+    items.forEach((item) => {
+      this._renderer(item); //// вызываем renderer, передав item
     });
-  } 
+  }
 
+  // этои метод принимает DOM-элемент и добавляет его в контейнер
   addItem(element) {
     this._container.prepend(element);
   }

@@ -2,12 +2,15 @@
 export const editPopup = '.popup_profile_edit';
 export const addPopup = '.popup_profile_add';
 export const imgPopup = '.popup_profile_image';
+export const avatarUpdatePopup = '.popup_avatar_update';
+export const deletePopup = '.popup_card-delete';
 
 //кнопки открытия модалок ниже
 export const editBtn = document.querySelector('.profile__edit');
 export const addBtn = document.querySelector('.profile__add');
 export const imgBtn = document.querySelector('.popup__image');
 export const cardImage = document.querySelector('card__image');
+export const avatarBtn = document.querySelector('.profile__photo-container');
 
 //кнопки закрытия модалок
 export const editCloseBtn = document.querySelector('.popup__close');
@@ -16,10 +19,12 @@ export const imgCloseBtn = document.querySelector('.popup__close');
 
 //форма в ДОМе
 export const profileForm = document.querySelector('.form');
+export const avatarForm = document.querySelector('.form__avatar');
 export const nameInput = profileForm.querySelector('.form__input_edit_name');
 export const aboutInput = profileForm.querySelector('.form__input_edit_about');
 export const profileName = '.profile__name';
 export const profileAbout = '.profile__about';
+export const profileAvatar = '.profile__photo';
 
 //форма для карточек в ДОМе
 export const cardPopupInputName = document.querySelector('.form__input_add_name');

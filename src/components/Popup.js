@@ -2,7 +2,7 @@ export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._popupActiveSelector = 'popup_opened';
-    this._popupKeyClose = this._popupElement.querySelector('.popup__close');
+    this._handleEscClose = this._handleEscClose.bind(this)
   }
 
   open() {
@@ -16,15 +16,19 @@ export default class Popup {
   }
 
   _handleEscClose = (evt) => {
-    if (evt.key === 'Escape') {
+    if (evt.keyCode === 27) {
+      console.log(this)
       this.close();
     }
   }
+
   setEventListeners() {
-    this._popupKeyClose.addEventListener('click', () => {
+    this._popupElement
+      .querySelector('.popup__close')
+      .addEventListener("click", () => {
         this.close();
       });
-    this._popupElement.addEventListener('click', (evt) => {
+    this._popupElement.addEventListener("click", (evt) => {
       if (evt.target === evt.currentTarget) {
         this.close();
       }

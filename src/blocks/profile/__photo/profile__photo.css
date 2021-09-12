@@ -1,4 +1,6 @@
 .profile__photo {
-  object-fit: contain;
-  align-items: center;
+  object-fit: cover;
+  width: 120px;
+  border-radius: 50%;
+  height: 120px;
 }

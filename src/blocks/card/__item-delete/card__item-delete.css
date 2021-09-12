@@ -20,3 +20,7 @@
 .card__item-delete:focus {
   outline: 0;
 }
+
+.card__item-delete_hidden {
+  display: none;
+}

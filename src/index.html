@@ -13,7 +13,7 @@
     <main class="content">
     <section class="profile">
       <div class="profile__photo-container">
-        <img class="profile__photo" src="<%=require('./images/profilePhoto.png')%>" alt="Фото Кусто">
+        <img class="profile__photo" src="<%=require('./images/profilePhoto.png')%>" alt="Аватар">
         <button class="profile__photo-btn"></button>
       </div>
       
@@ -24,12 +24,12 @@
         </div>
         <p class="profile__about">Исследователь океана</p>
       </div>
-      <button class="profile__add" type="button"></button>
+      <button class="profile__add" type="submit"></button>
     </section>
   <!--Template js-->
     <template id="template">
           <li class="card__item">
-            <button class="card__item-delete" type="button"></button>
+            <button class="card__item-delete card__item-delete_hidden" type="button"></button>
             <img class="card__image" src="<%=require('./images/cardPhotoFirstSixth.jpg')%>" alt="Карачаевск">
             <div class="card__item-info">
               <h2 class="card__item-title">Карачаевск</h2>
@@ -51,41 +51,47 @@
   </div>
 
 
-  <!-- Завтра продолжить с этого места -->
   <!--Ниже модалка обновления аватара-->
-  <!-- <div class="popup popup_profile_add popup_opened">
+  <div class="popup popup_avatar_update">
     <div class="popup__dialog">
       <button class="popup__close" type="button"></button>
       <h3 class="popup__title">Обновить аватар</h3>
-      <form name="profileCard" class="form form_card" novalidate>
-        <input type="url" name="link" autocomplete="off" class="form__input form__input_add_link" id="input_add_link" placeholder="Ссылка на картинку" required>
+      <form name="form-avatar" class="form form__avatar" novalidate>
+        <input type="url" name="avatar" autocomplete="off" class="form__input form__input_add_link" id="input_add_link" placeholder="Ссылка на картинку" required>
         <span class="popup__input-error" id="input_add_link-error">Введите адрес сайта.</span>
-        <button class="form__save" type="submit">Сохранить</button>
+        <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
-  </div> -->
+  </div>
 
 
 
     <!--Ниже модалка для подтверждения удаления карточки-->
     <div class="popup popup_card-delete">
       <div class="popup__dialog">
-        <button class="popup__close" type="button"></button>
-        <h3 class="popup__title">Вы уваерены?</h3>
-        <button class="form__save form__save-delete" type="submit">Да</button>
+        <!-- <button class="popup__close" type="button"></button> -->
+        <button class="popup__close" type="button">
+          <img src="<%=require('./images/CloseIcon.svg')%>" alt="кнопка закрытия попапа">
+        </button>
+        <form class="form form__card-delete" novalidate>
+          <h3 class="popup__title">Вы уваерены?</h3>
+          <button class="form__save" type="submit" aria-label="Да">Да</button>
+        </form>
       </div>
     </div>
   <!--Ниже модалка для редактирования профиля-->
   <div class="popup popup_profile_edit">
     <div class="popup__dialog">
-      <button class="popup__close" type="button"></button>
+      <button class="popup__close" type="button">
+        <img class="logo" src="<%=require('./images/CloseIcon.svg')%>" alt="Россия">
+      </button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <form name="profileInfo" class="form" novalidate>
-        <input type="text" name="name" autocomplete="off" class="form__input form__input_edit_name" id="input_edit_name" placeholder="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+        <input type="text" name="name" autocomplete="off" class="form__input form__input_edit_name" id="input_edit_name" placeholder="Имя" minlength="2" maxlength="40" required>
         <span class="popup__input-error" id="input_edit_name-error">Вы пропустили это поле.</span>
-        <input type="text" name="about" autocomplete="off" class="form__input form__input_edit_about" id="input_edit_about" placeholder="Исследователь океана" minlength="2" maxlength="200" required>
+        <input type="text" name="about" autocomplete="off" class="form__input form__input_edit_about" id="input_edit_about" placeholder="О себе" minlength="2" maxlength="200" required>
         <span class="popup__input-error" id="input_edit_about-error">Вы пропустили это поле.</span>
-        <button class="form__save" type="submit">Сохранить</button>
+        <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
@@ -99,7 +105,7 @@
         <span class="popup__input-error" id="input_add_name-error">Вы пропустили это поле.</span>
         <input type="url" name="link" autocomplete="off" class="form__input form__input_add_link" id="input_add_link" placeholder="Ссылка на картинку" required>
         <span class="popup__input-error" id="input_add_link-error">Введите адрес сайта.</span>
-        <button class="form__save" type="submit">Сохранить</button>
+        <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
